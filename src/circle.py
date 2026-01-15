@@ -25,3 +25,8 @@ class Circle:
     def __str__(self):
         return f"Circle(r={self.radius:.1f}, w={self.weight:.1f}, pos=({self.x:.1f}, {self.y:.1f}))"
 
+    def within_bounds(self, container):
+        return (self.x - self.radius >= 0 and
+                self.y - self.radius >= 0 and
+                self.x + self.radius <= container.width and
+                self.y + self.radius <= container.height)
