@@ -15,5 +15,4 @@ chromosome = [0,1]
 p.place_from_chromosome(chromosome)
 
 for i,c in enumerate(circles):
-    print(i, "placed:", c.placed, "pos:", (c.x, c.y))
-    
+    print(i, "placed:", c.placed, "pos:", (float(c.x), float(c.y)))

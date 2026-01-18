@@ -37,6 +37,35 @@ class Placement:
 
             return open_points
         
+        if len(placed) == 1:
+            c1 = placed[0]
+            dist_centres = c1.radius + new_circle.radius
+
+            for angle in np.linspace(0, 2*np.pi, 36, endpoint = False):
+                x = c1.x + dist_centres * np.cos(angle)
+                y = c1.y + dist_centres * np.sin(angle)
+
+                if self._is_valid(new_circle, x, y, placed):
+                    d0 = np.sqrt(x*x + y*y)
+                    open_points.append((x, y, d0))
+
+            return open_points 
+
+        for i in range(len(placed)):
+            for j in range(i + 1, len(placed)):
+                c1 = placed[i]
+                c2 = placed[j]
+
+                positions = self.find_tangent_positions(c1, c2, new_circle)
+
+                for (x,y) in positions:
+                    if self._is_valid(new_circle, x, y, placed):
+                        d0 = np.sqrt(x*x + y*y)
+                        open_points.append((x,y,d0))
+            
+        
+        return open_points 
+        
         return open_points 
     
     def _is_valid(self, circle, x, y, placed):
@@ -54,3 +83,38 @@ class Placement:
                 return False
             
         return True
+    
+    def find_tangent_positions(self, c1, c2, new_circle):
+        r1 = c1.radius + new_circle.radius
+        r2 = c2.radius + new_circle.radius
+        d = np.sqrt((c2.x - c1.x)**2 + (c2.y - c1.y)**2)
+        
+        if d == 0:
+            return []
+        if d > r1 + r2:
+            return []
+        if d < abs(r1 - r2):
+            return []
+        
+        a = (r1**2 - r2**2 + d**2) / (2*d)
+        h_sq = r1 ** 2 - a ** 2
+        if h_sq < 0:
+            h_sq = 0
+
+        h = np.sqrt(h_sq) 
+
+        px = c1.x + a * (c2.x - c1.x) / d
+        py = c1.y + a * (c2.y - c1.y) / d
+
+        positions = []
+
+        if h > 1e-9:
+            positions.append((
+                px + h * (c2.y - c1.y) / d,
+                py - h * (c2.x - c1.x) / d
+            ))
+        else:
+            positions.append((px, py))
+
+        return positions
+
