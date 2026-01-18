@@ -53,4 +53,4 @@ class Placement:
             if d < (circle.radius + other.radius - 0.01):
                 return False
             
-            return True
+        return True
