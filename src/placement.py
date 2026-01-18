@@ -62,11 +62,21 @@ class Placement:
                     if self._is_valid(new_circle, x, y, placed):
                         d0 = np.sqrt(x*x + y*y)
                         open_points.append((x,y,d0))
+        
+        if not open_points:
+            for other in placed:
+                dist_centres = other.radius + new_circle.radius 
+                for angle in np.linspace(0, 2*np.pi, 36, endpoint = False):
+                    x = other.x + dist_centres * np.cos(angle)
+                    y = other.y + dist_centres * np.sin(angle)
+
+                    if self._is_valid(new_circle, x, y, placed):
+                        d0 = np.sqrt(x*x + y*y)
+                        open_points.append((x, y, d0))
             
         
         return open_points 
         
-        return open_points 
     
     def _is_valid(self, circle, x, y, placed):
 
@@ -113,8 +123,13 @@ class Placement:
                 px + h * (c2.y - c1.y) / d,
                 py - h * (c2.x - c1.x) / d
             ))
+            positions.append((
+                px - h * (c2.y - c1.y) / d,
+                py + h * (c2.x - c1.x) / d
+            ))
+        
         else:
-            positions.append((px, py))
-
+            positions.append((px,py)) 
+    
         return positions
 
