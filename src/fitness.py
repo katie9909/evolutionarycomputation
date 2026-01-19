@@ -43,6 +43,7 @@ class FitnessEvaluator:
         
         return wasted_space + penalty
     
+    # debug helper, exposes individual penalty components to identify which constraint causes large fitness values in testing
     def debug_fitness(self, circles):
         placed = [c for c in circles if c.placed]
 
