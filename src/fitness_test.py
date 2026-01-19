@@ -16,5 +16,9 @@ placement.place_from_chromosome([0,1,2])
 
 fe = FitnessEvaluator(container)
 
+placed = [c for c in circles if c.placed]
+print("Placed:", len(placed), "/", len(circles))
+print("Positions:", [(float(c.x), float(c.y)) for c in circles])
+
 print("Fitness:", fe.calculate_fitness(circles))
 
