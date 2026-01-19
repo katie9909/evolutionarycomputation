@@ -17,7 +17,7 @@ def random_search(container, circles, n_evaluations=2000, seed=42):
     best_fitness = float("inf")
 
     for _ in range(n_evaluations):
-        ordering = list(np.random.permutation(n_circles))
+        ordering = [int(x) for x in np.random.permutation(n_circles)]
         placement.place_from_chromosome(ordering)
         fitness = fitness_evaluator.calculate_fitness(circles)
 
@@ -51,5 +51,15 @@ def run_basic_instances(n_evaluations=2000, seed=42):
 
         print(f"Basic instance {idx}: placed {placed_count}/{len(circles)} best_fitness={best_fitness:.2f}")
         print(f"best_ordering={best_ordering}")
+
+        if idx == 0:
+
+            placement = Placement(circles, container)
+            placement.place_from_chromosome(best_ordering)
+
+            fitness_evaluator = FitnessEvaluator(container)
+            info = fitness_evaluator.debug_fitness(circles)
+            print("DEBUG", info)
+
     
 run_basic_instances(n_evaluations=2000, seed=42)
