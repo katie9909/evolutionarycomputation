@@ -2,13 +2,11 @@ import numpy as np
 from ga_utilities import initialise_orderings, evaluate_population, evaluate_ordering
 from selection import tournament_selection
 from mutation import swap_mutation
+from crossover import ordered_crossover 
 
 def run_ga(container, radii, weights,
-           pop_size=30,
-           n_gens=200,
-           k=3,
-           p_mut=200,
-           elitism=1,
+           pop_size=30, n_gens=200,
+           k=3, p_mut=0.02, p_xover = 0.9, elitism=1,
            seed=1,
            target_fitness = 0.0):
     np.random.seed(seed)
@@ -34,8 +32,15 @@ def run_ga(container, radii, weights,
                 new_pop.append(pop[int(ei)][:])
 
         while len(new_pop) < pop_size:
-            parent = tournament_selection(pop, fit, k=k)
-            child = swap_mutation(parent, mutation_rate=p_mut)
+            p1 = tournament_selection(pop, fit, k=k)
+            p2 = tournament_selection(pop, fit, k=k)
+
+            if np.random.rand() < p_xover:
+                child = ordered_crossover(p1,p2) 
+            else:
+                child = p1[:]
+
+            child = swap_mutation(child, mutation_rate=p_mut)
             new_pop.append(child)
         
         pop = new_pop
@@ -53,7 +58,7 @@ def run_ga(container, radii, weights,
             print("perfect at gen", gen)
             break
 
-        return best_sol, best 
+    return best_sol, best 
     
         
 

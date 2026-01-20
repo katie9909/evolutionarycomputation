@@ -21,7 +21,7 @@ class Placement:
             if open_points:
                 cx = self.container.width / 2
                 cy = self.container.height / 2
-                best  = min(open_points, key=lambda p: (p[0] - cx)**2 + (p[1] - cy)**2)
+                best = min(open_points, key=lambda p: (p[0] - cx)**2 + (p[1] - cy)**2)
                 circle.set_position(best[0], best[1])
           
         
