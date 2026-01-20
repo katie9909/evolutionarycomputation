@@ -12,11 +12,6 @@ def evaluate_ordering(container,radii,weights,ordering):
     placement = Placement(circles, container)
     placement.place_from_chromosome(ordering)
 
-    # temp debug
-    positions = [(float(c.x), float(c.y)) for c in circles]
-    print("ordering:", ordering)
-    print("positions:", positions)
-
     fitness_evaluator = FitnessEvaluator(container)
     return fitness_evaluator.calculate_fitness(circles)
 
