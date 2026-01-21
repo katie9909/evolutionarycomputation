@@ -10,6 +10,6 @@ class Container:
         self.com_max_y = 0.8 * self.height
 
     def com_in_bounds(self,com_x,com_y):
-        return (self.com_min_y <= com_x <= self.com_max_x and
+        return (self.com_min_x <= com_x <= self.com_max_x and
                 self.com_min_y <= com_y <= self.com_max_y)
     

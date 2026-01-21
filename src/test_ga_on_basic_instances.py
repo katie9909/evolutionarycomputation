@@ -7,7 +7,11 @@ def run_basic_instances_ga(pop_size=30, n_gens=300, mutation_rate=0.3, seed =1 )
     instances = create_basic_instances()
 
     for idx, inst in enumerate(instances):
-
+        container = Container(
+            width=inst.container.width,
+            height=inst.container.depth,
+            max_weight=inst.container.max_weight
+        )
 
 
         radii = [c.diameter / 2 for c in inst.cylinders]
