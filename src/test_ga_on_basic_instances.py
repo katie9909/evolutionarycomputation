@@ -3,7 +3,7 @@ from circle import Circle
 from container_instances import create_basic_instances
 from ga_run import run_ga
 
-def run_basic_instances_ga(pop_size=30, n_gens=300, mutation_rate=0.3, seed =1 ):
+def run_basic_instances_ga(pop_size=30, n_gens=300, mutation_rate=0.2, seed =1 ):
     instances = create_basic_instances()
 
     for idx, inst in enumerate(instances):
@@ -30,4 +30,4 @@ def run_basic_instances_ga(pop_size=30, n_gens=300, mutation_rate=0.3, seed =1 )
 
         print(f"Basic instance {idx}: best_fit = {best_fit:.2f} best_sol={best_sol}")
 
-run_basic_instances_ga(pop_size=40, n_gens=500, mutation_rate=0.3, seed=1)
+run_basic_instances_ga(pop_size=40, n_gens=500, mutation_rate=0.2, seed=1)
