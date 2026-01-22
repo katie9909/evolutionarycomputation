@@ -17,7 +17,7 @@ if __name__ == "__main__":
             pop_size = 60,
             n_gens = 300,
             k = 3,
-            p_mut = 0.02,
+            p_mut = 0.01,
             p_xover = 0.9,
             elitism = 2,
             seed = 1,
@@ -25,8 +25,8 @@ if __name__ == "__main__":
         )
 
         visualise_solution (container, radii, weights, solution,
-                           title = f"Basic instance {i} (fitness={best_fit:.2f})",
-                           save_path = f"results/basic_instance{i}.png")
+                           title = f"Basic instance {i+1} (fitness={best_fit:.2f})",
+                           save_path = f"results/basic_instance{i+1}.png")
     
     
     challenging = create_challenging_instances()
@@ -42,7 +42,7 @@ if __name__ == "__main__":
             pop_size=100,
             n_gens=1000,
             k=3,
-            p_mut=0.02,
+            p_mut=0.01,
             p_xover =0.9,
             elitism=2,
             seed=1,

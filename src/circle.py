@@ -9,6 +9,7 @@ class Circle:
         self.placed = False
     
     def set_position(self, x, y):
+        # Mark circle as placed at given coords
         self.x = x
         self.y = y
         self.placed = True
@@ -26,6 +27,7 @@ class Circle:
         return f"Circle(r={self.radius:.1f}, w={self.weight:.1f}, pos=({self.x:.1f}, {self.y:.1f}))"
 
     def within_bounds(self, container):
+        # check if circle is completely within container boundaries
         return (self.x - self.radius >= 0 and
                 self.y - self.radius >= 0 and
                 self.x + self.radius <= container.width and

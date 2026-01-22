@@ -8,7 +8,7 @@ weights = [10,10,10,10,10]
 best_sol, best = run_ga(
     container, radii, weights,
     pop_size = 30, n_gens=100,
-    k=3, p_mut=0.3,
+    k=3, p_mut=0.2,
     elitism = 1, seed=1
 )
 

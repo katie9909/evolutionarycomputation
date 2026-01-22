@@ -2,7 +2,7 @@ from container import Container
 from container_instances import create_challenging_instances
 from ga_run import run_ga
 
-def run_challenging_instances_ga(pop_size=100, n_gens=1000, mutation_rate=0.01, seed=1 ):
+def run_challenging_instances_ga(pop_size=100, n_gens=1000, mutation_rate=0.02, seed=1 ):
     instances = create_challenging_instances()
 
     for idx, inst in enumerate(instances):
@@ -30,4 +30,4 @@ def run_challenging_instances_ga(pop_size=100, n_gens=1000, mutation_rate=0.01, 
 
         print(f"challenging instance {idx+4}: best_fit: {best_fit:.2f}, best_sol={best_sol}")
 
-run_challenging_instances_ga(pop_size=100, n_gens=1000, mutation_rate=0.2, seed=1)
+run_challenging_instances_ga(pop_size=100, n_gens=1000, mutation_rate=0.02, seed=1)
